@@ -77,6 +77,52 @@ Util.buildClassificationGrid = async function (data) {
   return grid;
 };
 
+/* **************************************
+ * Build the vehicle details view HTML
+ * ************************************ */
+Util.buildVehicleDetail = async function (vehicle) {
+  let grid;
+  grid = '<div id="inv-details">';
+  grid +=
+    '<div id="inv-details-img"><img src="' +
+    vehicle.inv_image +
+    '" alt="Image of ' +
+    vehicle.inv_make +
+    ' ' +
+    vehicle.inv_model +
+    ' on CSE Motors" /></div>';
+  grid += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details</h2>';
+  grid +=
+    '<div id="inv-details-year"><h3>Year</h3><strong>' +
+    vehicle.inv_year +
+    '</strong></div>';
+  grid +=
+    '<div id="inv-details-miles"><h3>Miles</h3><strong>' +
+    new Intl.NumberFormat('en-US').format(vehicle.inv_miles) +
+    '</strong></div>';
+  grid +=
+    '<div id="inv-details-type"><h3>Type</h3><strong>' +
+    vehicle.classification_name +
+    '</strong></div>';
+  grid +=
+    '<div id="inv-details-color"><h3>Color</h3><strong>' +
+    vehicle.inv_color +
+    '</strong></div>';
+  grid +=
+    '<div id="inv-details-price"><h3>Price</h3><strong>' +
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(vehicle.inv_price) +
+    '</strong></div>';
+  grid +=
+    '<div id="inv-details-description"><h3>Description</h3><p>' +
+    vehicle.inv_description +
+    '</p></div>';
+  grid += '</div>'; // inv_details
+  return grid;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for

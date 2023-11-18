@@ -13,6 +13,7 @@ const static = require('./routes/static');
 const baseController = require('./controllers/baseController');
 const inventoryRoute = require('./routes/inventoryRoute');
 const utilities = require('./utilities/');
+const invalidRoute = require('./routes/invalidRoute');
 
 /* ***********************
  * View Engine and Templates
@@ -29,6 +30,8 @@ app.use(static);
 app.get('/', utilities.handleErrors(baseController.buildHome));
 // Inventory routes
 app.use('/inv', inventoryRoute);
+// A route to simulate a 500 status
+app.use('/invalid', invalidRoute);
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({ status: 404, message: 'Sorry, we appear to have lost that page.' });
@@ -41,13 +44,17 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
   console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  let titleError = err.status;
   if (err.status == 404) {
     message = err.message;
+  } else if (err.status == 500) {
+    message = err.message;
+    titleError = 'Server Error'; // to force the title to be "Server Error"
   } else {
     message = 'Oh no! There was a crash. Maybe try a different route?';
   }
   res.render('errors/error', {
-    title: err.status || 'Server Error',
+    title: titleError || 'Server Error',
     message,
     nav,
   });

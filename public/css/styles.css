@@ -61,6 +61,7 @@ h1, h2, h3, h4, h5, h6 {
 /* end of Header partial */
 
 /* Navigation partial  */
+
 nav ul {
   display: flex;
   justify-content: space-around;
@@ -68,6 +69,17 @@ nav ul {
   background-color: black;
   color: white;
   padding: 15px;
+}
+
+nav li a {
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+}
+
+nav li a:hover {
+  background-color: white;
+  color: black;
 }
 
 /* end of Navigation partial  */
@@ -151,6 +163,99 @@ nav ul {
 
 /* end of Main Part (index.ejs) */
 
+/* Inventory Classification View */
+#inv-display {
+  display: grid;
+  padding: 0px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+#inv-display li {
+  list-style-type: none;
+  justify-content: center;
+  text-align: center;
+  background-image: linear-gradient(white, var(--secondary-color));
+}
+
+/* end of Inventory Classification View */
+
+/* Vehicle Details View */
+#inv-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr; */
+  padding: 0px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#inv-details h3 {
+  font-family: var(--paragraph-font);
+  margin: 20px 0 0 0;
+}
+
+#inv-details strong{
+  font-family: var(--paragraph-font);
+  font-size: 1.8em;
+}
+
+#inv-details-img {
+  /* grid-row: 1/2; */
+  grid-column: 1/3;
+}
+
+#inv-details-img img{
+  max-width: 100vw;
+}
+#inv-details h2 {
+  /* grid-row: 2/3; */
+  grid-column: 1/3;
+}
+
+#inv-details-year {
+  /* grid-row: 3/4; */
+  grid-column: 1/2;
+  text-align: left;
+}
+
+#inv-details-miles {
+  /* grid-row: 3/4; */
+  grid-column: 2/3;
+  text-align: left;
+}
+
+#inv-details-type {
+  /* grid-row: 4/5; */
+  grid-column: 1/2;
+  text-align: left;
+}
+
+#inv-details-color {
+  /* grid-row: 4/5; */
+  grid-column: 2/3;
+  text-align: left;
+}
+
+#inv-details-price {
+  /* grid-row: 5/6; */
+  grid-column: 1/3;
+  text-align: left;
+}
+
+#inv-details-description {
+  /* grid-row: 6/7; */
+  grid-column: 1/3;
+  text-align: left;
+}
+
+#inv-details-description p{
+  font-size: 1.5em;
+}
+
+
+/* end of Vehicle Details View */
+
 @media screen and (min-width: 900px) {
 
   body {
@@ -224,6 +329,76 @@ nav ul {
   }
     
   /* end of Main Part (index.ejs) */
+
+  /* Inventory Classification View */
+  #inv-display {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  #inv-display img {
+    height: 100px;
+  }
+  /* end of Inventory Classification View */  
+
+  /* Vehicle Details View */
+  #inv-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto;
+  }
+
+  #inv-details-img {
+    grid-column: 1/2;
+    grid-row: 2/7;
+  }
+
+  #inv-details-img img{
+    max-width: 100vw;
+  }
+
+  #inv-details h2 {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  #inv-details-year {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    margin: 0 0 0 20px;
+  }
+
+  #inv-details-miles {
+    grid-column: 2/3;
+    grid-row: 3/4;
+    margin: 0 0 0 20px;
+  }
+
+  #inv-details-type {
+    grid-column: 2/3;
+    grid-row: 4/5;
+    margin: 0 0 0 20px;
+  }
+
+  #inv-details-color {
+    grid-column: 2/3;
+    grid-row: 5/6;
+    margin: 0 0 0 20px;
+  }
+
+  #inv-details-price {
+    grid-column: 2/3;
+    grid-row: 6/7;
+    margin: 0 0 0 20px;
+  }
+
+  #inv-details-description {
+    grid-column: 2/3;
+    grid-row: 7/8;
+    margin: 0 0 0 20px;
+  }
+
+
+  /* end of Vehicle Details View */
+
 }
 
 /******* Change Box Model ***************/
