@@ -90,7 +90,7 @@ Util.buildVehicleDetail = async function (vehicle) {
     vehicle.inv_make +
     ' ' +
     vehicle.inv_model +
-    ' on CSE Motors" /></div>';
+    ' on CSE Motors" ></div>';
   grid += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details</h2>';
   grid +=
     '<div id="inv-details-year"><h3>Year</h3><strong>' +
