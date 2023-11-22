@@ -183,7 +183,7 @@ nav li a:hover {
 /* Vehicle Details View */
 #inv-details {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr; */
   /* grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr; */
   padding: 0px;
   margin: 0 auto;
@@ -200,52 +200,52 @@ nav li a:hover {
   font-size: 1.8em;
 }
 
-#inv-details-img {
+/* #inv-details-img { */
   /* grid-row: 1/2; */
-  grid-column: 1/3;
-}
+  /* grid-column: 1/3; */
+/* } */
 
 #inv-details-img img{
   max-width: 100vw;
 }
-#inv-details h2 {
+/* #inv-details h2 { */
   /* grid-row: 2/3; */
-  grid-column: 1/3;
-}
+  /* grid-column: 1/3; */
+/* } */
 
 #inv-details-year {
   /* grid-row: 3/4; */
-  grid-column: 1/2;
+  /* grid-column: 1/2; */
   text-align: left;
 }
 
 #inv-details-miles {
   /* grid-row: 3/4; */
-  grid-column: 2/3;
+  /* grid-column: 2/3; */
   text-align: left;
 }
 
 #inv-details-type {
   /* grid-row: 4/5; */
-  grid-column: 1/2;
+  /* grid-column: 1/2; */
   text-align: left;
 }
 
 #inv-details-color {
   /* grid-row: 4/5; */
-  grid-column: 2/3;
+  /* grid-column: 2/3; */
   text-align: left;
 }
 
 #inv-details-price {
   /* grid-row: 5/6; */
-  grid-column: 1/3;
+  /* grid-column: 1/3; */
   text-align: left;
 }
 
 #inv-details-description {
   /* grid-row: 6/7; */
-  grid-column: 1/3;
+  /* grid-column: 1/3; */
   text-align: left;
 }
 
