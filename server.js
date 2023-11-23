@@ -14,8 +14,10 @@ const app = express();
 const static = require('./routes/static');
 const baseController = require('./controllers/baseController');
 const inventoryRoute = require('./routes/inventoryRoute');
+const accountRoute = require('./routes/accountRoute');
 const utilities = require('./utilities/');
 const invalidRoute = require('./routes/invalidRoute');
+const bodyParser = require('body-parser');
 
 /* ***********************
  * Middleware
@@ -38,6 +40,10 @@ app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
+// To make body-parser available to the applictiaon
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -53,6 +59,8 @@ app.use(static);
 app.get('/', utilities.handleErrors(baseController.buildHome));
 // Inventory routes
 app.use('/inv', inventoryRoute);
+// Account routes
+app.use('/account', accountRoute);
 // A route to simulate a 500 status
 app.use('/invalid', invalidRoute);
 // File Not Found Route - must be last route in list
@@ -80,6 +88,7 @@ app.use(async (err, req, res, next) => {
     title: titleError || 'Server Error',
     message,
     nav,
+    errors: null,
   });
 });
 
