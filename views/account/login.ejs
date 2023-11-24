@@ -8,9 +8,17 @@
 <!-- Message Block -->
 <%- messages() %>
 
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <%  }) %>
+</ul>
+<% } %>
+
 <!-- login input form -->
 <div class="login">
-  <form class="login-form" action="/login" method="post">
+  <form class="login-form" action="/account/login" method="post">
     <label for="email">Email:</label>
     <input type="email" id="email" name="account_email" required>
     <label for="password">Password:</label>
