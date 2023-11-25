@@ -28,7 +28,7 @@ Util.getNav = async function (req, res, next) {
  * Build the classification view HTML
  * ************************************ */
 Util.buildClassificationGrid = async function (data) {
-  let grid;
+  let grid = '';
   if (data.length > 0) {
     grid = '<ul id="inv-display">';
     data.forEach((vehicle) => {
@@ -121,6 +121,30 @@ Util.buildVehicleDetail = async function (vehicle) {
     '</p></div>';
   grid += '</div>'; // inv_details
   return grid;
+};
+
+/* ************************
+ * Constructs the nav HTML unordered list
+ ************************** */
+Util.getOptions = async function (
+  req,
+  res,
+  next,
+  classification_selected = -1,
+) {
+  let data = await invModel.getClassifications();
+  let list = '';
+  let selected = '';
+  data.rows.forEach((row) => {
+    if (row.classification_id == classification_selected) {
+      selected = 'selected';
+    } else {
+      selected = '';
+    }
+    list += `<option ${selected} value="${row.classification_id}">`;
+    list += row.classification_name + '</option>';
+  });
+  return list;
 };
 
 /* ****************************************
