@@ -289,6 +289,9 @@ button:hover {
   background-color: var(--accent2-color);
 }
 
+button:disabled {
+  background-color: #dddddd;
+}
 .login p {
   text-align: center;
 }

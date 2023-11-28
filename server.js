@@ -18,6 +18,7 @@ const accountRoute = require('./routes/accountRoute');
 const utilities = require('./utilities/');
 const invalidRoute = require('./routes/invalidRoute');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 /* ***********************
  * Middleware
@@ -43,6 +44,9 @@ app.use(function (req, res, next) {
 // To make body-parser available to the applictiaon
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(cookieParser());
+// To validate a token if exists
+app.use(utilities.checkJWTToken);
 
 /* ***********************
  * View Engine and Templates

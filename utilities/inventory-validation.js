@@ -114,4 +114,54 @@ validate.checkInventoryData = async (req, res, next) => {
   next();
 };
 
+/* ******************************
+ * Check data and return errors or continue to registration - upddate
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const {
+    classification_id,
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+  } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    let options = await utilities.getOptions(
+      req,
+      res,
+      next,
+      (classification_selected = classification_id),
+    );
+    let titlename = `${inv_make} ${inv_model}`;
+    res.render('./inventory/edit-inventory', {
+      errors,
+      title: 'Edit ' + titlename,
+      // classification_id,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      nav,
+      options,
+    });
+    return;
+  }
+  next();
+};
+
 module.exports = validate;
