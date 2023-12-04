@@ -297,6 +297,18 @@ button:disabled {
 }
 /* end of Login form */
 
+/* Forms */
+.update-form, .register, .add-record, .delete-record, .edit-record {
+  max-width: 600px;
+}
+
+.basic-information-form, .password-form, .add-form, .delete-form, .edit-form  {
+  margin: 20px 0px auto;
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+}
+
 @media screen and (min-width: 900px) {
 
   body {

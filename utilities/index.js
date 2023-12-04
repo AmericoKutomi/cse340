@@ -128,21 +128,15 @@ Util.buildVehicleDetail = async function (vehicle) {
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
-Util.getOptions = async function (
-  req,
-  res,
-  next,
-  classification_selected = -1,
-) {
+Util.getOptions = async function (classification_selected) {
   let data = await invModel.getClassifications();
   let list = '';
   let selected = '';
   data.rows.forEach((row) => {
-    if (row.classification_id == classification_selected) {
-      selected = 'selected';
-    } else {
-      selected = '';
-    }
+    selected =
+      parseInt(classification_selected) === row.classification_id
+        ? 'selected'
+        : '';
     list += `<option ${selected} value="${row.classification_id}">`;
     list += row.classification_name + '</option>';
   });
@@ -173,6 +167,9 @@ Util.checkJWTToken = (req, res, next) => {
         }
         res.locals.accountData = accountData;
         res.locals.loggedin = 1;
+        res.locals.accountType = accountData.account_type;
+        res.locals.accountFirstName = accountData.account_firstname;
+        res.locals.accountId = accountData.account_id;
         next();
       },
     );

@@ -1,1 +1,27 @@
-You're logged in
+<!-- Content Heading -->
+<% if (title) { %>
+<h1>
+  <%= title %>
+</h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Message Block -->
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <%  }) %>
+</ul>
+<% } %>
+
+<h2>Welcome <%= accountFirstName %></h2>
+
+<p><a title="Click to enter the Update Account Information" href="/account/update">Update Account Information</a> </p>
+<br>
+
+<% if(locals.accountType==='Employee' || locals.accountType==='Admin') { %>
+<h3>Inventory Management</h3>
+<p><a title="Click to enter the Inventory Management" href="/inv/">Enter the Inventory Management</a> </p>
+<% } %>

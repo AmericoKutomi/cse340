@@ -37,4 +37,24 @@ router.post(
   utilities.handleErrors(accountController.accountLogin),
 );
 
+// Account update
+router.get('/update', utilities.handleErrors(accountController.buildUpdate));
+
+router.post(
+  '/update/basic',
+  regValidate.basicRules(),
+  regValidate.checkBasicData,
+  utilities.handleErrors(accountController.updateBasic),
+);
+
+router.post(
+  '/update/password',
+  regValidate.passwordRules(),
+  // regValidate.checkPasswordData,
+  utilities.handleErrors(accountController.updatePassword),
+);
+
+// Account logout
+router.get('/logout', utilities.handleErrors(accountController.accountLogout));
+
 module.exports = router;

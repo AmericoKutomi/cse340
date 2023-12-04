@@ -87,12 +87,7 @@ validate.checkInventoryData = async (req, res, next) => {
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    let options = await utilities.getOptions(
-      req,
-      res,
-      next,
-      (classification_selected = classification_id),
-    );
+    let options = await utilities.getOptions(classification_id);
     res.render('./inventory/add-inventory', {
       errors,
       title: 'Add New Vehicle',
@@ -135,12 +130,7 @@ validate.checkUpdateData = async (req, res, next) => {
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    let options = await utilities.getOptions(
-      req,
-      res,
-      next,
-      (classification_selected = classification_id),
-    );
+    let options = await utilities.getOptions(classification_id);
     let titlename = `${inv_make} ${inv_model}`;
     res.render('./inventory/edit-inventory', {
       errors,
