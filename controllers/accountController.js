@@ -171,6 +171,7 @@ async function updateBasic(req, res) {
   );
 
   if (regResult) {
+    res.locals.accountFirstName = account_firstname;
     req.flash('notice', `Information update completed successfully.`);
     res.status(201).render('account/management', {
       title: 'Account Management',

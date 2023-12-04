@@ -302,7 +302,7 @@ button:disabled {
   max-width: 600px;
 }
 
-.basic-information-form, .password-form, .add-form, .delete-form, .edit-form  {
+.basic-information-form, .password-form, .add-form, .delete-form, .edit-form, .register-form {
   margin: 20px 0px auto;
   background-color: var(--secondary-color);
   padding: 20px;
