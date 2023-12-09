@@ -139,7 +139,7 @@ Util.buildVehicleDetail = async function (vehicle, reviews) {
     grid += '<p>There are no reviews for this vehicle.</p>';
   }
   grid +=
-    '<div class="button-box"><a class="edit-review" href="/review/update/' +
+    '<div class="button-box"><a class="review-button" href="/review/update/' +
     vehicle.inv_id +
     '">Your Review</a></div>';
   grid += '</div>'; //reviews
