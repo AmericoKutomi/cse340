@@ -22,6 +22,7 @@ router.get(
 // Route to build management view
 router.get(
   '/',
+  utilities.checkLogin,
   accountValidate.checkAccess,
   utilities.handleErrors(invController.buildManagement),
 );
@@ -29,6 +30,7 @@ router.get(
 // Route to build add classification view
 router.get(
   '/addclassification',
+  utilities.checkLogin,
   accountValidate.checkAccess,
   utilities.handleErrors(invController.buildAddClassification),
 );
@@ -36,6 +38,7 @@ router.get(
 // Route to add a new Classification
 router.post(
   '/addclassification',
+  utilities.checkLogin,
   accountValidate.checkAccess,
   classificationValidate.classificationRules(),
   classificationValidate.checkClassificationData,
@@ -45,6 +48,7 @@ router.post(
 // Route to build add inventory view
 router.get(
   '/addinventory',
+  utilities.checkLogin,
   accountValidate.checkAccess,
   utilities.handleErrors(invController.buildAddInventory),
 );
@@ -52,6 +56,7 @@ router.get(
 // Route to add a new Inventory
 router.post(
   '/addinventory',
+  utilities.checkLogin,
   accountValidate.checkAccess,
   inventoryValidate.inventoryRules(),
   inventoryValidate.checkInventoryData,
@@ -67,6 +72,7 @@ router.get(
 // Route to build inventory edit view
 router.get(
   '/edit/:invId',
+  utilities.checkLogin,
   accountValidate.checkAccess,
   utilities.handleErrors(invController.buildEditInventory),
 );
@@ -74,6 +80,7 @@ router.get(
 // Route to update inventory from edit view
 router.post(
   '/updateinventory/',
+  utilities.checkLogin,
   accountValidate.checkAccess,
   inventoryValidate.inventoryRules(),
   inventoryValidate.checkUpdateData,
@@ -83,6 +90,7 @@ router.post(
 // Route to build inventory delete view
 router.get(
   '/delete/:invId',
+  utilities.checkLogin,
   accountValidate.checkAccess,
   utilities.handleErrors(invController.buildDeleteInventory),
 );
@@ -90,6 +98,7 @@ router.get(
 // Route to delete inventory from delete view
 router.post(
   '/deleteinventory/',
+  utilities.checkLogin,
   accountValidate.checkAccess,
   utilities.handleErrors(invController.deleteInventory),
 );
