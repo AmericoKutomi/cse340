@@ -134,8 +134,7 @@ async function buildAccountManagement(req, res, next) {
  * *************************************** */
 async function buildUpdate(req, res, next) {
   let nav = await utilities.getNav();
-  let accountData = await accountModel.getAccountById(res.locals.accountId);
-  if (!accountData) {
+  if (!res.locals.accountData) {
     req.flash('notice', 'Please check your credentials and try again.');
     res.status(501).render('account/management', {
       title: 'Account Management',
@@ -148,10 +147,6 @@ async function buildUpdate(req, res, next) {
     title: 'Update Account Information',
     nav,
     errors: null,
-    account_firstname: accountData.account_firstname,
-    account_lastname: accountData.account_lastname,
-    account_email: accountData.account_email,
-    account_id: accountData.account_id,
   });
 }
 
@@ -171,7 +166,9 @@ async function updateBasic(req, res) {
   );
 
   if (regResult) {
-    res.locals.accountFirstName = account_firstname;
+    res.locals.accountData.account_firstname = account_firstname;
+    res.locals.accountData.account_lastname = account_lastname;
+    res.locals.accountData.account_email = account_email;
     req.flash('notice', `Information update completed successfully.`);
     res.status(201).render('account/management', {
       title: 'Account Management',
@@ -244,9 +241,6 @@ async function accountLogout(req, res) {
   res.clearCookie('jwt');
   res.locals.accountData = undefined;
   res.locals.loggedin = undefined;
-  res.locals.accountType = undefined;
-  res.locals.accountFirstName = undefined;
-  res.locals.accountId = undefined;
   return res.redirect('/');
 }
 

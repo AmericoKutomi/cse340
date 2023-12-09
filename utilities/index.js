@@ -82,7 +82,7 @@ Util.buildClassificationGrid = async function (data) {
 /* **************************************
  * Build the vehicle details view HTML
  * ************************************ */
-Util.buildVehicleDetail = async function (vehicle) {
+Util.buildVehicleDetail = async function (vehicle, reviews) {
   let grid;
   grid = '<div id="inv-details">';
   grid +=
@@ -121,6 +121,28 @@ Util.buildVehicleDetail = async function (vehicle) {
     '<div id="inv-details-description"><h3>Description</h3><p>' +
     vehicle.inv_description +
     '</p></div>';
+  grid += '<div id="inv-details-reviews">';
+  grid += '<h3>User Reviews</h3>';
+  if (reviews.length > 0) {
+    grid += '<ul id="reviews-display">';
+    reviews.forEach((review) => {
+      grid += '<li>';
+      grid +=
+        '"' +
+        review.user_review_comment +
+        '" (' +
+        review.user_review_grade +
+        '/5)';
+    });
+    grid += '</ul>';
+  } else {
+    grid += '<p>There are no reviews for this vehicle.</p>';
+  }
+  grid +=
+    '<div class="button-box"><a class="edit-review" href="/review/update/' +
+    vehicle.inv_id +
+    '">Your Review</a></div>';
+  grid += '</div>'; //reviews
   grid += '</div>'; // inv_details
   return grid;
 };
@@ -167,9 +189,6 @@ Util.checkJWTToken = (req, res, next) => {
         }
         res.locals.accountData = accountData;
         res.locals.loggedin = 1;
-        res.locals.accountType = accountData.account_type;
-        res.locals.accountFirstName = accountData.account_firstname;
-        res.locals.accountId = accountData.account_id;
         next();
       },
     );

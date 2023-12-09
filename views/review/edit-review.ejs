@@ -1,0 +1,36 @@
+<!-- Content Heading -->
+<% if (title) { %>
+<h1>
+  <%= title %>
+</h1>
+<% } else { res.redirect('/') } %>
+
+<!-- Message Block -->
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <%  }) %>
+</ul>
+<% } %>
+
+<!-- edit user review input form -->
+<div class="edit-review">
+  <p>All fields are required</p>
+  <form id="updateForm" class="edit-form" action="/review/update" method="post">
+    <fieldset>
+      <legend>Your Review</legend>
+      <label for="reviewcomment">Comment:</label>
+      <input type="text" id="reviewcomment" name="user_review_comment" minlength="10" required value="<%= locals.user_review_comment %>">
+      <label for="reviewgrade">Score (between 1 and 5):</label>
+      <input type="number" max="5" min="1" id="reviewgrade" name="user_review_grade" required value="<%= locals.user_review_grade %>">
+    </fieldset>
+    <button type="submit" disabled>Send Review</button>
+    <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+    <input type="hidden" name="user_review_id" <% if(locals.user_review_id) { %> value="<%= locals.user_review_id %>" <% } %>>
+
+  </form>
+</div>
+<script src="/js/review-update.js"></script>

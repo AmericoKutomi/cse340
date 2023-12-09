@@ -1,0 +1,43 @@
+Objective: create a way for users to leave a review for vehicles
+
+Description:
+On the vehicle details page, user reviews will be shown. On this page, there will be a button to submit a new review. The user must be logged in. The system will only allow one review per user per vehicle.
+
+1. Database interaction
+  - creation of a new table user_review
+  - creation of two constraints for foreign keys: account_id and inv_id
+
+2. Model
+  - creation of review-model.js
+    - function getUserInvReview 
+    - function getReviewByInvId
+    - function registerReview
+    - function updateReview
+
+3. Controller
+  - server.js: route /review implemented to route to reviewRoute.js
+  - creation of reviewRoute.js
+    - get /update/:invId implemented
+    - post /update implemented
+  - creation of reviewController.js 
+    - by receiving the update command, the function checks if user_review_id is undefined. If it is undefined, it is a new review.
+      - to add, it is called review-model registerReview
+      - to update, it is called review-model updateReview
+
+4. View
+  Part 1: show reviews
+  - To see the reviews, there is no change in vehicle.ejs because the reviews are part of "grid", which is created in invController.buildByInventoryId
+  - utilities.buildVehicleDetail (called from invController.buildByInventoryId) changed to show the reviews.
+
+  Part 2: to add or edit a review
+  - edit-review.ejs created
+  - reviewController.buildEditReview created to render the register review page
+  - script to enable button only after some change in the form done
+
+5. Data validation
+  - review-validation.js
+    - reviewRules implemented
+    - checkReviewData implemented
+
+6. Error Handling
+  - reviews can be done only by logged users.

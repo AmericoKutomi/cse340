@@ -38,7 +38,11 @@ router.post(
 );
 
 // Account update
-router.get('/update', utilities.handleErrors(accountController.buildUpdate));
+router.get(
+  '/update',
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildUpdate),
+);
 
 router.post(
   '/update/basic',

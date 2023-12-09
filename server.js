@@ -15,6 +15,7 @@ const static = require('./routes/static');
 const baseController = require('./controllers/baseController');
 const inventoryRoute = require('./routes/inventoryRoute');
 const accountRoute = require('./routes/accountRoute');
+const reviewRoute = require('./routes/reviewRoute');
 const utilities = require('./utilities/');
 const invalidRoute = require('./routes/invalidRoute');
 const bodyParser = require('body-parser');
@@ -65,6 +66,8 @@ app.get('/', utilities.handleErrors(baseController.buildHome));
 app.use('/inv', inventoryRoute);
 // Account routes
 app.use('/account', accountRoute);
+// Reviews routes
+app.use('/review', reviewRoute);
 // A route to simulate a 500 status
 app.use('/invalid', invalidRoute);
 // File Not Found Route - must be last route in list

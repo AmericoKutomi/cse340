@@ -88,9 +88,6 @@ validate.checkRegData = async (req, res, next) => {
       errors,
       title: 'Registration',
       nav,
-      account_firstname,
-      account_lastname,
-      account_email,
     });
     return;
   }
@@ -122,8 +119,8 @@ validate.checkLoginData = async (req, res, next) => {
  * ***************************** */
 validate.checkAccess = async (req, res, next) => {
   if (
-    res.locals.accountType != 'Employee' &&
-    res.locals.accountType != 'Admin'
+    res.locals.accountData.account_type != 'Employee' &&
+    res.locals.accountData.account_type != 'Admin'
   ) {
     req.flash('notice', `You need credentials to use this feature.`);
     return res.redirect('account/login');
@@ -170,9 +167,6 @@ validate.checkBasicData = async (req, res, next) => {
       errors,
       title: 'Update Account Information',
       nav,
-      account_firstname,
-      account_lastname,
-      account_email,
     });
     return;
   }

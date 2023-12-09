@@ -1,4 +1,5 @@
 const invModel = require('../models/inventory-model');
+const reviewModel = require('../models/review-model');
 const utilities = require('../utilities/');
 
 const invCont = {};
@@ -30,11 +31,12 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByInventoryId = async function (req, res, next) {
   const inv_id = req.params.invId;
   const data = await invModel.getInventoryByInvId(inv_id);
-  const grid = await utilities.buildVehicleDetail(data[0]);
+  const reviews = await reviewModel.getReviewByInvId(inv_id);
+  const grid = await utilities.buildVehicleDetail(data, reviews);
   let nav = await utilities.getNav();
-  const inv_make = data[0].inv_make;
-  const inv_model = data[0].inv_model;
-  const inv_year = data[0].inv_year;
+  const inv_make = data.inv_make;
+  const inv_model = data.inv_model;
+  const inv_year = data.inv_year;
   res.render('./inventory/vehicle', {
     title: inv_make + ' ' + inv_model + ' ' + inv_year,
     nav,
@@ -92,8 +94,7 @@ invCont.buildAddInventory = async function (req, res, next) {
 invCont.buildEditInventory = async function (req, res, next) {
   const inv_id = parseInt(req.params.invId);
   let nav = await utilities.getNav();
-  const data = await invModel.getInventoryByInvId(inv_id);
-  const itemData = data[0];
+  const itemData = await invModel.getInventoryByInvId(inv_id);
   const name = `${itemData.inv_make} ${itemData.inv_model}`;
   let options = await utilities.getOptions(itemData.classification_id);
   res.render('./inventory/edit-inventory', {
@@ -212,7 +213,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
   const invData = await invModel.getInventoryByClassificationId(
     classification_id,
   );
-  if (invData[0].inv_id) {
+  if (invData) {
     return res.json(invData);
   } else {
     next(new Error('No data returned'));
@@ -284,8 +285,7 @@ invCont.updateInventory = async function (req, res) {
 invCont.buildDeleteInventory = async function (req, res, next) {
   const inv_id = parseInt(req.params.invId);
   let nav = await utilities.getNav();
-  const data = await invModel.getInventoryByInvId(inv_id);
-  const itemData = data[0];
+  const itemData = await invModel.getInventoryByInvId(inv_id);
   const name = `${itemData.inv_make} ${itemData.inv_model}`;
   res.render('./inventory/delete-inventory', {
     title: 'Delete ' + name,
