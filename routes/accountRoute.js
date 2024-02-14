@@ -13,6 +13,15 @@ router.get(
 );
 
 // Route to build login view
+/**
+ * @swagger
+ * /login:
+ *    get:
+ *      description: Cria uma tela para login
+ *      responses:
+ *        200:
+ *          description: Sucesso
+ */
 router.get('/login', utilities.handleErrors(accountController.buildLogin));
 
 // Route to build registration view

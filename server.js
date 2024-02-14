@@ -9,6 +9,7 @@ const session = require('express-session');
 const pool = require('./database');
 const expressLayouts = require('express-ejs-layouts');
 const express = require('express');
+const { specs, swaggerUi } = require('./swagger');
 const env = require('dotenv').config();
 const app = express();
 const static = require('./routes/static');
@@ -24,6 +25,8 @@ const cookieParser = require('cookie-parser');
 /* ***********************
  * Middleware
  * ************************/
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
 app.use(
   session({
     store: new (require('connect-pg-simple')(session))({

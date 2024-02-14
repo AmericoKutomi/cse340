@@ -1,0 +1,1 @@
+const teste2 = 'americo sadao kutomi 2';

@@ -9,6 +9,16 @@
       "driver": "PostgreSQL",
       "name": "render.com",
       "connectString": "postgres://cse340ask:Yj9vCOOrcs6xWyldkKzXoqAuDteB2EoH@dpg-cl3e15quuipc738bqcd0-a.ohio-postgres.render.com/cse340ask"
+    },
+    {
+      "previewLimit": 50,
+      "server": "192.168.1.116",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "OracleVM DB",
+      "database": "navigation",
+      "username": "navigator",
+      "password": "novasenha"
     }
   ]
 }
